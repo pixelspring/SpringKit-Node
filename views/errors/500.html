@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="row column">
+
+    <hr>
+    <h1>500 Server Error</h1>
+    <hr>
+    <h3>Error Status: {{error.status}}</h3>
+    <pre>{{error.stack}}</pre>
+
+</div>
+
+{% endblock %}

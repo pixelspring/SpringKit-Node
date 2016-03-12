@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="small-12 columns">
+        <h1>Sign up</h1>
+        <hr>
+    </div>
+</div>
+
+<form id="signup-form" method="POST">
+
+    <input type="hidden" name="_csrf" value="{{ _csrf }}"/>
+
+    <div class="row">
+    <div class="medium-6 columns">
+        <label for="email">Email
+            <input type="email" name="email" id="email" placeholder="Email" autofocus="autofocus" class="form-control"/>
+        </label>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="medium-6 columns">
+        <label for="password">Password
+            <input type="password" name="password" id="password" placeholder="Password" class="form-control"/>
+        </label>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="medium-6 columns">
+        <label for="confirmPassword">Confirm Password
+            <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" class="form-control"/>
+        </label>
+    </div>
+    </div>
+
+    <div class="row">
+        <div class="medium-6 columns">
+            <button type="submit" class="button">Signup</button>
+        </div>
+    </div>
+
+</form>
+{% endblock %}

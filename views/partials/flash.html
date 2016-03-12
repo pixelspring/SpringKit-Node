@@ -1,0 +1,44 @@
+{% if messages.errors %}
+<div class="callout alert">
+    <div class="row">
+        {% for error in messages.errors %}
+        <div class="small-12 columns">
+            <div class="error msg">{{ error.msg }}</div>
+        </div>
+        {% endfor %}
+        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+{% endif %}
+
+{% if messages.info %}
+<div class="callout warning">
+    <div class="row">
+        {% for info in messages.info %}
+        <div class="small-12 columns">
+            <div class="info msg">{{ info.msg }}</div>
+        </div>
+        {% endfor %}
+        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+{% endif %}
+
+{% if messages.success %}
+<div class="callout success">
+    <div class="row">
+        {% for success in messages.success %}
+        <div class="small-12 columns">
+            <div class="info msg">{{ success.msg }}</div>
+        </div>
+        {% endfor %}
+        <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+</div>
+{% endif %}

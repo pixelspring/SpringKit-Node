@@ -1,0 +1,44 @@
+<div class="top-bar">
+<div class="row column">
+
+    <div class="top-bar-left">
+        <ul class="menu">
+            <li class="menu-text"><a href="../">Site Home</a></li>
+            <li><a href="./contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="top-bar-right">
+        {% if user %}
+            <ul class="dropdown menu" data-dropdown-menu>
+                <li class="has-submenu">
+                <a href="#">
+                {% if user.profile.picture %}
+                        <img src='{{ user.profile.picture }}'>
+                {% else %}
+                        <img src='{{ user.gravatar(20) }}'>
+                {% endif %}
+                {{ user.profile.name or user.email or user.id }}
+                </a>
+                    <ul class="submenu menu vertical" data-submenu>
+                        <li><a href="/account">My Account</a></li>
+                        <li class="divider"></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        {% else %}
+            <ul class="dropdown menu" data-dropdown-menu>
+                <li class="has-submenu">
+                    <a href="#">Create Account</a>
+                    <ul class="submenu menu vertical" data-submenu>
+                        <li><a href="/login">Login</a></li>
+                        <li><a href="/signup">Create Account</a></li>
+                    </ul>
+                </li>
+            </ul>
+        {% endif %}
+    </div>
+
+</div>
+</div>

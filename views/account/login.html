@@ -1,0 +1,58 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="small-12 columns">
+        <h1>Sign in</h1>
+        <hr>
+    </div>
+</div>
+
+
+<form method="POST">
+
+    <input type="hidden" name="_csrf" value="{{ _csrf }}"/>
+
+    <div class="row">
+    <div class="medium-6 columns">
+        <label for="email">Email
+            <input type="email" name="email" id="email" placeholder="Email" autofocus="autofocus" class="form-control"/>
+        </label>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="medium-6 columns">
+        <label for="password">Password
+            <input type="password" name="password" id="password" placeholder="Password" class="form-control"/>
+        </label>
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="medium-6 columns">
+        <button type="submit" class="button">Login</button>
+        <p><a href="/forgot">Forgot your password?</a></p>
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="medium-6 columns">
+        <hr/>
+    </div>
+    </div>
+
+
+    <div class="row">
+    <div class="medium-6 columns">
+        <p><a href="/auth/facebook">Sign in with Facebook</a></p>
+        <p><a href="/auth/twitter">Sign in with Twitter</a></p>
+        <p><a href="/auth/google">Sign in with Google</a></p>
+        <p><a href="/auth/github">Sign in with GitHub</a></p>
+    </div>
+    </div>
+
+</form>
+{% endblock %}
