@@ -6,6 +6,7 @@ module.exports = function (app, passport) {
     var homeController = require('../controllers/home');
     var userController = require('../controllers/user');
     var contactController = require('../controllers/contact');
+    var apiController = require('../controllers/api');
 
     /**
      * Passport Configuration
@@ -32,6 +33,11 @@ module.exports = function (app, passport) {
     app.post('/account/password', passportConf.isAuthenticated, userController.postUpdatePassword);
     app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
     app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
+
+    /**
+     * API Routes:
+     */
+    app.get('/api', apiController.index);
 
     /**
      * OAuth authentication routes. (Sign in)
