@@ -110,16 +110,21 @@ app.use(lusca({
     xssProtection: true
 }));
 
+// Middleware to make user var available in all templates:
 app.use(function(req, res, next) {
     res.locals.user = req.user;
     next();
 });
+
+// After successful login, redirect back to /api, /contact or /
 app.use(function(req, res, next) {
-    if (/api/i.test(req.path)) {
-        req.session.returnTo = req.path;
+    if (/(api)|(contact)|(^\/$)/i.test(req.path)) {
+      req.session.returnTo = req.path;
     }
     next();
 });
+
+// Serve Static Files & cache them with maxAge:
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 
 
