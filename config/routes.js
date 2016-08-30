@@ -1,69 +1,58 @@
+
 module.exports = function (app, passport) {
 
-    /**
-     * Controllers (route handlers).
-     */
-    var homeController = require('../controllers/home');
+    // Controllers
+    var HomeController = require('../controllers/home');
     var userController = require('../controllers/user');
     var contactController = require('../controllers/contact');
     var apiController = require('../controllers/api');
 
-    /**
-     * Passport Configuration
-     */
-    var passportConf = require('./passport');
-
-    /**
-     * Primary app routes.
-     */
-    app.get('/', homeController.index);
-    app.get('/login', userController.getLogin);
-    app.post('/login', userController.postLogin);
+    app.get('/', HomeController.index);
+    app.get('/contact', contactController.contactGet);
+    app.post('/contact', contactController.contactPost);
+    app.get('/account', userController.ensureAuthenticated, userController.accountGet);
+    app.put('/account', userController.ensureAuthenticated, userController.accountPut);
+    app.delete('/account', userController.ensureAuthenticated, userController.accountDelete);
+    app.get('/signup', userController.signupGet);
+    app.post('/signup', userController.signupPost);
+    app.get('/login', userController.loginGet);
+    app.post('/login', userController.loginPost);
+    app.get('/forgot', userController.forgotGet);
+    app.post('/forgot', userController.forgotPost);
+    app.get('/reset/:token', userController.resetGet);
+    app.post('/reset/:token', userController.resetPost);
     app.get('/logout', userController.logout);
-    app.get('/forgot', userController.getForgot);
-    app.post('/forgot', userController.postForgot);
-    app.get('/reset/:token', userController.getReset);
-    app.post('/reset/:token', userController.postReset);
-    app.get('/signup', userController.getSignup);
-    app.post('/signup', userController.postSignup);
-    app.get('/contact', contactController.getContact);
-    app.post('/contact', contactController.postContact);
-    app.get('/account', passportConf.isAuthenticated, userController.getAccount);
-    app.post('/account/profile', passportConf.isAuthenticated, userController.postUpdateProfile);
-    app.post('/account/password', passportConf.isAuthenticated, userController.postUpdatePassword);
-    app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
-    app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
+    app.get('/unlink/:provider', userController.ensureAuthenticated, userController.unlink);
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'user_location'] }));
+    app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
+    app.get('/auth/twitter', passport.authenticate('twitter'));
+    app.get('/auth/twitter/callback', passport.authenticate('twitter', { successRedirect: '/', failureRedirect: '/login' }));
+    app.get('/auth/github', passport.authenticate('github', { scope: [ 'user:email profile repo' ] }));
+    app.get('/auth/github/callback', passport.authenticate('github', { successRedirect: '/', failureRedirect: '/login' }));
 
     /**
      * API Routes:
      */
     app.get('/api', apiController.index);
 
-    /**
-     * OAuth authentication routes. (Sign in)
-     */
-    // facebook:
-    app.get('/auth/facebook', passport.authenticate('facebook', {scope: ['email', 'user_location']}));
-    app.get('/auth/facebook/callback', passport.authenticate('facebook', {failureRedirect: '/login'}), function (req, res) {
-        res.redirect(req.session.returnTo || '/');
-    });
+    // Server Monitor:
+    // https://github.com/RafalWilinski/express-status-monitor
+    // http://127.0.0.1:3000/status
+    app.use(require('express-status-monitor')({
 
-    // GitHub:
-    app.get('/auth/github', passport.authenticate('github'));
-    app.get('/auth/github/callback', passport.authenticate('github', {failureRedirect: '/login'}), function (req, res) {
-        res.redirect(req.session.returnTo || '/');
-    });
+        title: 'App Status',    // Default title
+        path: '/status',        // Path to status page
+        spans: [{
+            interval: 1,        // Every second
+            retention: 60       // Keep 60 datapoints in memory
+        }, {
+            interval: 5,        // Every 5 seconds
+            retention: 60
+        }, {
+            interval: 15,       // Every 15 seconds
+            retention: 60
+        }]
 
-    // Google
-    app.get('/auth/google', passport.authenticate('google', {scope: 'profile email'}));
-    app.get('/auth/google/callback', passport.authenticate('google', {failureRedirect: '/login'}), function (req, res) {
-        res.redirect(req.session.returnTo || '/');
-    });
-
-    // Twitter:
-    app.get('/auth/twitter', passport.authenticate('twitter'));
-    app.get('/auth/twitter/callback', passport.authenticate('twitter', {failureRedirect: '/login'}), function (req, res) {
-        res.redirect(req.session.returnTo || '/');
-    });
+    }));
 
 }

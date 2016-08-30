@@ -1,138 +1,91 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 
-{% block content %}
-<div class="row column">
-    <h3>Profile Information</h3>
-</div>
-
-<div class="row column">
-
-<form action='/account/profile' method='POST'>
-    <input type='hidden' name="_csrf" value="{{ _csrf }}">
-
-    <div class="form-group">
-        <label for='email'>Email</label>
-        <input class="form-control" type='email' name='email' id='email' value='{{ user.email }}'>
+{% block body %}
+<div class="column row">
+  <div class="medium-7 columns">
+    {% if messages.success %}
+    <div role="alert" class="callout success">
+      {% for success in messages.success %}
+      <div>{{ success.msg }}</div>
+      {% endfor %}
     </div>
-
-
-    <div class="form-group">
-        <label for='name'>Name</label>
-        <input class="form-control" type='text' name='name' id='name' value='{{ user.profile.name }}'>
+    {% endif %}
+    {% if messages.error %}
+    <div role="alert" class="callout alert">
+      {% for error in messages.error %}
+      <div>{{ error.msg }}</div>
+      {% endfor %}
     </div>
+    {% endif %}
 
-    <div class="form-group">
-        <label for='location'>Location</label>
-        <input class="form-control" type='text' name='location' id='location' value='{{ user.profile.location }}'>
-    </div>
+    <h5>Profile Information</h5>
 
-    <div class="form-group">
-        <label for='website'>Website</label>
-        <input class="form-control" type='text' name='website' id='website' value='{{ user.profile.website }}'>
-    </div>
+    <p><small>Account Created:</small> {{ user.created_at | date("MMMM Do YYYY, h:mm a") }}<br>
+       <small>Account Updated:</small> {{ user.updated_at | date("MMMM Do YYYY, h:mm a") }}</p>
+    <form method="POST" action="/account?_method=PUT">
+      <label for="email">Email</label>
+      <input type="email" name="email" id="email" value="{{user.email}}">
 
-    <div class="row form-group">
-        <fieldset class="large-6 columns">
-            <legend>Gender</legend>
-            <input type="radio" {% if user.profile.gender == 'male' %}checked{% endif %} name="gender" value='male' data-toggle='radio'><label for="male" >Male</label>
-            <input type='radio' {% if user.profile.gender == 'female' %}checked{% endif %} name='gender' value='female' data-toggle='radio'><label for="female">Female</label>
-        </fieldset>
-    </div>
+      <label for="name">Name</label>
+      <input type="text" name="name" id="name" value="{{user.name}}">
 
+      <label for="name">Telephone</label>
+      <input type="text" name="phone" id="phone" value="{{user.phone}}">
 
-    <div class="form-group">
-        <label for='gravatar'>Gravatar</label>
-        <img src="{{ user.gravatar() }}" class='profile' width='100' height='100'>
-    </div>
+      <label>Gender</label>
+      <input type="radio" name="gender" id="male" value="male" {% if user.gender == 'male' %}checked{% endif %}>
+      <label for="male">Male</label>
+      <input type="radio" name="gender" id="female" value="female" {% if user.gender == 'female' %}checked{% endif %}>
+      <label for="female">Female</label>
 
-    <div class="form-group">
-        <button class="button" type='submit'> Profile</i></button>
-    </div>
+      <label for="location">Location</label>
+      <input type="text" name="location" id="location" value="{{ user.location }}">
 
-</form>
-</div>
+      <label for="website">Website</label>
+      <input type="text" name="website" id="website" value="{{ user.website }}">
 
-<div class="row column">
-    <h3>Change Password</h3>
-</div>
+      <label>Gravatar</label>
+      <img src="{{ user.gravatar }}" class="gravatar" width="100" height="100">
 
-<div class="row column">
-<form class="form-horizontal" action='/account/password' method='POST'>
+      <button type="submit" class="success button">Update Profile</button>
+    </form>
 
-    <input type='hidden' name="_csrf" value="{{ _csrf }}">
+    <h5>Change Password</h5>
 
-    <div class="form-group">
-        <label for='password'>New Password</label>
-        <input class="form-control" type='password' name='password' id='password'>
-    </div>
+    <form method="POST" action="/account?_method=PUT">
+      <label for="password">New Password</label>
+      <input type="password" name="password" id="password">
 
-    <div class="form-group">
-        <label for='confirmPassword'>Confirm Password</label>
-        <input class="form-control" type='password' name='confirmPassword' id='confirmPassword'>
-    </div>
+      <label for="confirm">Confirm Password</label>
+      <input type="password" name="confirm" id="confirm">
 
-    <div class="form-group">
-        <button class="button" type='submit'>Change Password</button>
-    </div>
+      <button type="submit" class="success button">Change Password</button>
+    </form>
 
-</form>
-</div>
+    <h5>Linked Accounts</h5>
 
-<div class="row column">
-    <h3>Delete Account</h3>
-</div>
+  {% if user.facebook %}
+  <p><a href="/unlink/facebook" class="text-danger">Unlink your Facebook account</a></p>
+  {% else %}
+  <p><a href="/auth/facebook">Link your Facebook account</a></p>
+  {% endif %}
+  {% if user.twitter %}
+  <p><a href="/unlink/twitter" class="text-danger">Unlink your Twitter account</a></p>
+  {% else %}
+  <p><a href="/auth/twitter">Link your Twitter account</a></p>
+  {% endif %}
+  {% if user.github %}
+  <p><a href="/unlink/github" class="text-danger">Unlink your Github account</a></p>
+  {% else %}
+  <p><a href="/auth/github">Link your Github account</a></p>
+  {% endif %}
 
-<div class="row column">
-<form class="form-horizontal" action='/account/delete' method='POST'>
-    <div class="form-group">
-        <p>You can delete your account, but keep in mind this action is irreversible</p>
-        <input type='hidden' name="_csrf" value="{{ _csrf }}">
-        <button class="button" type='submit'>Delete my account</i></button>
-    </div>
-</form>
-</div>
+    <h5>Delete Account</h5>
 
-<div class="row column">
-    <h3>Linked Accounts</h3>
-</div>
-
-<div class="row column">
-<div class="form-horizontal">
-    <div class="form-group">
-
-       <div>
-            {% if user.google %}
-                <p><a class="text-danger" href='/account/unlink/google'>Unlink your Google account</a>
-            {% else %}
-                <p><a href='/auth/google'>Link your Google account</a></p>
-            {% endif %}
-        </div>
-
-        <div>
-            {% if user.facebook %}
-                <p><a class="text-danger" href='/account/unlink/facebook'>Unlink your Facebook account</a>
-            {% else %}
-                <p><a href='/auth/facebook'>Link your Facebook account</a></p>
-            {% endif %}
-        </div>
-
-        <div>
-            {% if user.twitter %}
-                <p><a class="text-danger" href='/account/unlink/twitter'>Unlink your Twitter account</a>
-            {% else %}
-                <p><a href='/auth/twitter'>Link your Twitter account</a></p>
-            {% endif %}
-        </div>
-
-        <div>
-            {% if user.github %}
-                <p><a class="text-danger" href='/account/unlink/github'>Unlink your GitHub account</a>
-            {% else %}
-                <p><a href='/auth/github'>Link your GitHub account</a></p>
-            {% endif %}
-        </div>
-
-    </div>
-</div>
+    <form method="POST" action="/account?_method=DELETE">
+      <p>You can delete your account, but keep in mind this action is irreversible.</p>
+      <button type="submit" class="alert button">Delete my account</button>
+    </form>
+  </div>
 </div>
 {% endblock %}
