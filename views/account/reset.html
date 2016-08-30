@@ -1,21 +1,33 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 
-{% block content %}
-<div class="col-sm-8 col-sm-offset-2">
+{% block body %}
+<div class="column row">
+  <div class="medium-8 medium-offset-2 columns">
+    {% if messages.success %}
+    <div role="alert" class="callout success">
+      {% for success in messages.success %}
+      <div>{{ success.msg }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if messages.error %}
+    <div role="alert" class="callout alert">
+      {% for error in messages.error %}
+      <div>{{ error.msg }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
     <form method="POST">
-        <legend>Reset Password</legend>
-        <input type="hidden" name="_csrf" value="{{ _csrf }}"/>
-        <div class="form-group">
-            <label for="password">New Password</label>
-            <input type="password" name="password" value="" placeholder="New password" autofocus="autofocus" class="form-control"/>
-        </div>
-        <div class="form-group">
-            <label for="confirm">Confirm Password</label>
-            <input type="password" name="confirm" value="" placeholder="Confirm password" class="form-control"/>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-reset"><i class="fa fa-keyboard-o"></i>Change Password</button>
-        </div>
+      <h4>Reset Password</h4>
+
+      <label for="password">New Password</label>
+      <input type="password" name="password" id="password" placeholder="New password" autoFocus>
+
+      <label for="confirm">Confirm Password</label>
+      <input type="password" name="confirm" id="confirm" placeholder="Confirm password">
+
+      <button type="submit" class="success button">Change Password</button>
     </form>
+  </div>
 </div>
 {% endblock %}

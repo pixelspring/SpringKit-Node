@@ -1,44 +1,41 @@
 <div class="top-bar">
-<div class="row column">
-
+  <div class="top-bar-title">
+    <span data-responsive-toggle="responsive-menu" data-hide-for="medium">
+      <span class="menu-icon light" data-toggle></span>
+    </span>
+    <a href="/">Project name</a>
+  </div>
+  <div id="responsive-menu">
     <div class="top-bar-left">
-        <ul class="menu">
-            <li class="menu-text"><a href="../">Site Home</a></li>
-            <li><a href="./contact">Contact</a></li>
+      <ul class="vertical medium-horizontal menu">
+        <li><a href="/" class="{% if title == 'Home' %}active{% endif %}">Home</a></li>
+        <li><a href="/contact" class="{% if title == 'Contact' %}active{% endif %}">Contact</a></li>
+      </ul>
+    </div>
+      <div class="top-bar-right">
+        <ul class="vertical medium-horizontal menu">
+          {% if user %}
+          <li>
+            {% if user.picture %}
+            <img class="avatar" src="{{ user.picture }}">
+            {% else %}
+            <img class="avatar" src="{{ user.gravatar }}">
+            {% endif %}
+            {% if user.name %}
+            {{ user.name }}
+            {% elif user.email %}
+            {{ user.email }}
+            {% else %}
+            {{ user.id }}
+            {% endif %}
+          </li>
+          <li><a href="/account" class="{% if title == 'Home' %}active{% endif %}">My Account</a></li>
+          <li><a href="/logout">Logout</a></li>
+          {% else %}
+          <li><a href="/login" class="{% if title == 'Log in' %}active{% endif %}">Log in</a></li>
+          <li><a href="/signup" class="{% if title == 'Sign up' %}active{% endif %}">Sign up</a></li>
+          {% endif %}
         </ul>
-    </div>
-
-    <div class="top-bar-right">
-        {% if user %}
-            <ul class="dropdown menu" data-dropdown-menu>
-                <li class="has-submenu">
-                <a href="#">
-                {% if user.profile.picture %}
-                        <img src='{{ user.profile.picture }}'>
-                {% else %}
-                        <img src='{{ user.gravatar(20) }}'>
-                {% endif %}
-                {{ user.profile.name or user.email or user.id }}
-                </a>
-                    <ul class="submenu menu vertical" data-submenu>
-                        <li><a href="/account">My Account</a></li>
-                        <li class="divider"></li>
-                        <li><a href="/logout">Logout</a></li>
-                    </ul>
-                </li>
-            </ul>
-        {% else %}
-            <ul class="dropdown menu" data-dropdown-menu>
-                <li class="has-submenu">
-                    <a href="#">Create Account</a>
-                    <ul class="submenu menu vertical" data-submenu>
-                        <li><a href="/login">Login</a></li>
-                        <li><a href="/signup">Create Account</a></li>
-                    </ul>
-                </li>
-            </ul>
-        {% endif %}
-    </div>
-
-</div>
+      </div>
+  </div>
 </div>

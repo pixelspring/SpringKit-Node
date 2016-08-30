@@ -1,33 +1,21 @@
 #Springkit-Node
 
-A boilerplate for Node/Express web applications, using the excellent hackathon-starter as a starting point.
-
-## Components:
-* Express
-* Nunjucks Templating
-* Mongo
-* Mongoose ODM
-* Passport Authentication:
- * Local, with Email & Password
- * Facebook
- * Twitter
- * Google
- * Github
-* Foundation 6
-* CSRF protection with Lusca
-* Flash Notifications/Messages
-* Contact Form
-* Basic JSON Api
-* Console colors
-* Error Pages
-* GZIP Compression
-* Sass Compilation
-* Dotenv Config
-* HTTP Request Logging
+A boilerplate for Node/Express/MySQL web applications
 
 ## Quick Start:
 Install dependencies with: `npm install `
-  
-Run app with the excellent [Nodemon](http://nodemon.io/):`nodemon app.js` or plain old `node app.js`
-  
-Point your browser at `http://127.0.0.1:3000`  
+
+Run app with the excellent [Nodemon](http://nodemon.io/):`nodemon`
+
+Point your browser at `http://127.0.0.1:3000`
+
+### License
+The MIT License (MIT)
+
+Copyright (c) 2016 Mike Seaby
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

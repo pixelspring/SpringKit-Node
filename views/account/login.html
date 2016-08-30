@@ -1,58 +1,41 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 
-{% block content %}
-<div class="row">
-    <div class="small-12 columns">
-        <h1>Sign in</h1>
-        <hr>
-    </div>
-</div>
+{% block body %}
+<div class="column row">
+  <div class="row">
+    <div class="medium-8 medium-offset-2 columns">
+      {% if messages.error %}
+      <div role="alert" class="callout alert">
+        {% for error in messages.error %}
+        <div>{{ error.msg }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
 
+      <form method="POST">
+        <h4>Log In</h4>
 
-<form method="POST">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Email" autofocus>
 
-    <input type="hidden" name="_csrf" value="{{ _csrf }}"/>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Password">
 
-    <div class="row">
-    <div class="medium-6 columns">
-        <label for="email">Email
-            <input type="email" name="email" id="email" placeholder="Email" autofocus="autofocus" class="form-control"/>
-        </label>
-    </div>
-    </div>
-
-    <div class="row">
-    <div class="medium-6 columns">
-        <label for="password">Password
-            <input type="password" name="password" id="password" placeholder="Password" class="form-control"/>
-        </label>
-    </div>
-    </div>
-
-
-    <div class="row">
-    <div class="medium-6 columns">
-        <button type="submit" class="button">Login</button>
         <p><a href="/forgot">Forgot your password?</a></p>
-    </div>
-    </div>
 
+        <button type="submit" class="button">Log in</button>
+      </form>
 
-    <div class="row">
-    <div class="medium-6 columns">
-        <hr/>
-    </div>
-    </div>
+      <div class="hr-title"><span>or</span></div>
 
+      <div class="button-group">
+        <a href="/auth/facebook" class="button facebook">Sign in with Facebook</a>
+        <a href="/auth/twitter" class="button twitter">Sign in with Twitter</a>
+        <a href="/auth/github" class="button github">Sign in with Github</a>
+      </div>
 
-    <div class="row">
-    <div class="medium-6 columns">
-        <p><a href="/auth/facebook">Sign in with Facebook</a></p>
-        <p><a href="/auth/twitter">Sign in with Twitter</a></p>
-        <p><a href="/auth/google">Sign in with Google</a></p>
-        <p><a href="/auth/github">Sign in with GitHub</a></p>
+      <p>Don't have an account? <a href="/signup">Sign up</a></p>
     </div>
-    </div>
-
-</form>
+  </div>
+</div>
 {% endblock %}
