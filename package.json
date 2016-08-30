@@ -2,6 +2,7 @@
   "name": "springkit-node",
   "version": "0.1.0",
   "description": "Boilerplate for Express/MySQL based apps",
+  "license": "MIT",
 
   "repository": {
         "type": "git",
