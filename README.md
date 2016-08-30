@@ -3,7 +3,9 @@
 A boilerplate for Node/Express/MySQL web applications
 
 ## Quick Start:
-Install dependencies with: `npm install `
+Install dependencies with: `npm install`
+
+Create a MySQL DB, wiht the name specified in your `.env` file (see SAMPLE.env)
 
 Run app with the excellent [Nodemon](http://nodemon.io/):`nodemon`
 
