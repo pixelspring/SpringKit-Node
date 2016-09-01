@@ -72,7 +72,16 @@ app.use(session({
   name: process.env.APP_NAME,
   secret: process.env.SESSION_SECRET,
   resave: true,
-  saveUninitialized: true
+  saveUninitialized: true,
+
+  cookie: {
+    // secure: true,
+    // httpOnly: true,
+    // domain: 'example.com',
+    // path: 'foo/bar',
+    maxAge: 3600000 // 1 hour
+  }
+
 }));
 
 // Use Flash messages
