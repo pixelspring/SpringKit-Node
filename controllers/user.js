@@ -270,7 +270,7 @@ exports.forgotPost = function(req, res, next) {
       });
       var mailOptions = {
         to: user.email,
-        from: 'support@yourdomain.com',
+        from: process.env.APP_EMAIL_ADDRESS,
         subject: 'Reset your password',
         text: 'You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n\n' +
         'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
@@ -349,9 +349,9 @@ exports.resetPost = function(req, res, next) {
         }
       });
       var mailOptions = {
-        from: process.env.APP_NAME,
+        from: process.env.APP_EMAIL_ADDRESS,
         to: user.email,
-        subject: 'Your' + process.env.APP_NAME + 'password has been changed',
+        subject: 'Your ' + process.env.APP_NAME + ' password has been changed',
         text: 'Hello,\n\n' +
         'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
       };
