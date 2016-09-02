@@ -1,23 +1,40 @@
-#Springkit-Node
+#SpringKit-Node
 
 A boilerplate for Node/Express/MySQL web applications
 
 ## Quick Start:
 Install dependencies with: `npm install`
 
-Create a MySQL DB, wiht the name specified in your `.env` file (see SAMPLE.env)
+Create a MySQL DB, with the name specified in your `.env` file (see SAMPLE.env)
 
 Run app with the excellent [Nodemon](http://nodemon.io/):`nodemon`
 
 Point your browser at `http://127.0.0.1:3000`
 
-### License
-The MIT License (MIT)
+### Component/Package Docs:
+* [Nunjucks](https://mozilla.github.io/nunjucks/templating.html) (templating)
+* [Nodemailer](http://nodemailer.com/) (email)
+* [Moment](http://momentjs.com/) (date formatting)
+* [Passport](http://passportjs.org/docs) (authentication)
+* [Express](http://expressjs.com/en/4x/api.html)
 
-Copyright (c) 2016 Mike Seaby
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+### Project Structure:
+```
+.
+├── config/                    # Configuration Files
+│   ├── passport.js/           # Passport auth strategies
+│   ├── bookshelf.js/          # Bookshelf ORM
+│   ├── routes.js/             # App Routes
+├── controllers/               # Route handlers
+├── migrations/                # DB Migrations
+├── models/                    # DB models
+├── public/                    # All publicly accessible files        
+│   ├── css/                   # CSS
+│   ├── fonts/                 # Web fonts
+│   ├── js/                    # Clientside JavaScript
+├── views/                     # View Templates                   
+├── .env                       # API keys, passwords, other sensitive info
+|── SAMPLE.env                 # Example .env file
+├── server.js                  # Main Express application file
+└── package.json               # NPM Dependencies and scripts
+```
