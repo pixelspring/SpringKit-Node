@@ -35,7 +35,7 @@ exports.contactPost = function(req, res) {
 
   var mailOptions = {
     from: req.body.name + ' ' + '<'+ req.body.email + '>',
-    to: 'your@email.com',
+    to: process.env.APP_EMAIL_ADDRESS,
     subject: 'Contact Form',
     text: req.body.message
   };
