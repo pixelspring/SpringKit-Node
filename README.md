@@ -22,9 +22,9 @@ Point your browser at `http://127.0.0.1:3000`
 ```
 .
 ├── config/                    # Configuration Files
-│   ├── passport.js/           # Passport auth strategies
-│   ├── bookshelf.js/          # Bookshelf ORM
-│   ├── routes.js/             # App Routes
+│   ├── passport.js            # Passport auth strategies
+│   ├── bookshelf.js           # Bookshelf ORM
+│   ├── routes.js              # App Routes
 ├── controllers/               # Route handlers
 ├── migrations/                # DB Migrations
 ├── models/                    # DB models
