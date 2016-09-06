@@ -1,6 +1,6 @@
-#SpringKit-Node
+![SpringKit-Node Logo](http://i.imgur.com/h1pwJDy.png)
 
-A boilerplate for Node/Express/MySQL web applications
+###### A boilerplate for Node/Express/MySQL web applications
 
 ## Quick Start:
 Install dependencies with: `npm install`
@@ -28,11 +28,12 @@ Point your browser at `http://127.0.0.1:3000`
 ├── controllers/               # Route handlers
 ├── migrations/                # DB Migrations
 ├── models/                    # DB models
-├── public/                    # All publicly accessible files        
+├── public/                    # All publicly accessible files
 │   ├── css/                   # CSS
 │   ├── fonts/                 # Web fonts
+│   ├── img/                   # Images
 │   ├── js/                    # Clientside JavaScript
-├── views/                     # View Templates                   
+├── views/                     # View Templates
 ├── .env                       # API keys, passwords, other sensitive info
 |── SAMPLE.env                 # Example .env file
 ├── server.js                  # Main Express application file
