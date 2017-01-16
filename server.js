@@ -51,7 +51,7 @@ var dateFilter = require('nunjucks-date-filter');
     dateFilter.setDefaultFormat('MMM Do YYYY');
 env.addFilter('date', dateFilter);
 
-app.set('view engine', 'html');
+app.set('view engine', 'njk');
 
 // Set port
 app.set('port', process.env.PORT || 3000);
@@ -109,12 +109,12 @@ require('./config/routes')(app, passport);
 // 404's
 app.use(function(req, res) {
     res.status(400);
-    res.render('errors/404.html', {title: '404: File Not Found'});
+    res.render('errors/404.njk', {title: '404: File Not Found'});
 });
 // 500's
 app.use(function(error, req, res, next) {
     res.status(500);
-    res.render('errors/500.html', {title:'500: Internal Server Error', error: error});
+    res.render('errors/500.njk', {title:'500: Internal Server Error', error: error});
 });
 
 // App security:

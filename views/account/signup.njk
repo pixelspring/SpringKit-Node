@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'layout.njk' %}
 
 {% block body %}
 <div class="column row">
@@ -13,17 +13,20 @@
       {% endif %}
 
       <form method="POST">
-        <h4>Log In</h4>
+        <h4>Create an account</h4>
 
         <label for="email">Email</label>
         <input type="email" name="email" id="email" placeholder="Email" autofocus>
 
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" placeholder="Name">
+
         <label for="password">Password</label>
         <input type="password" name="password" id="password" placeholder="Password">
 
-        <p><a href="/forgot">Forgot your password?</a></p>
+        <p class="help-text">By signing up, you agree to the <a href="/">Terms of Service</a>.</p>
 
-        <button type="submit" class="button">Log in</button>
+        <button type="submit" class="button">Create an account</button>
       </form>
 
       <div class="hr-title"><span>or</span></div>
@@ -31,10 +34,9 @@
       <div class="button-group">
         <a href="/auth/facebook" class="button facebook">Sign in with Facebook</a>
         <a href="/auth/twitter" class="button twitter">Sign in with Twitter</a>
-        <a href="/auth/github" class="button github">Sign in with Github</a>
       </div>
 
-      <p>Don't have an account? <a href="/signup">Sign up</a></p>
+      <p>Already have an account? <a href="/login">Log in</a></p>
     </div>
   </div>
 </div>
