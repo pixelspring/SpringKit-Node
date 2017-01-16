@@ -134,7 +134,18 @@ if (app.get('env') === 'production') {
 }
 
 app.listen(app.get('port'), function() {
-    console.log('\n----------------------\nExpress server started\n----------------------\nListening on port %d \nIn %s mode'.debug, app.get('port'), app.get('env'));
+  var currentpath = process.cwd();
+
+  var date = new Date();
+  var datestring = date.toDateString();
+  var timestring = date.toLocaleTimeString();
+
+  console.log('\n───────────────────────────────────────────────────────');
+  console.log('Express Server started at: ' + datestring + ', ' + timestring);
+  console.log('→ Port: ' + app.get('port'));
+  console.log('→ CWD:  ' + currentpath);
+  console.log('→ Mode: %s',app.get('env'));
+  console.log('───────────────────────────────────────────────────────\n');
 });
 
 module.exports = app;
