@@ -35,7 +35,7 @@ var app = express();
 
 // "Powered By" Middleware:
 app.use(function (req, res, next) {
-  res.header("X-powered-by", "Hamsters")
+  res.header("X-powered-by", process.env.APP_NAME)
   next()
 });
 
