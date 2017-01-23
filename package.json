@@ -3,12 +3,10 @@
   "version": "0.1.0",
   "description": "Boilerplate for Express/MySQL based apps",
   "license": "MIT",
-
   "repository": {
-        "type": "git",
-        "url": ""
-    },
-
+    "type": "git",
+    "url": ""
+  },
   "scripts": {
     "build": "npm-run-all build:*",
     "build:css": "node-sass public/css/main.scss > public/css/main.css",
@@ -17,13 +15,12 @@
     "watch": "npm-run-all --parallel watch:*",
     "watch:css": "nodemon -e scss -w public/css -x npm run build:css"
   },
-
   "dependencies": {
     "async": "^2.1.4",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.15.2",
     "bookshelf": "^0.10.2",
-    "colors": "^1.1.2",
+    "chalk": "^1.1.3",
     "compression": "^1.6.2",
     "dotenv": "^2.0.0",
     "express": "^4.14.0",
@@ -49,11 +46,8 @@
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4"
   },
-
   "devDependencies": {},
-
   "engines": {
     "node": "6.1.0"
   }
-
 }

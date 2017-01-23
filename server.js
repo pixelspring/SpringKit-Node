@@ -1,27 +1,27 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var compression = require('compression');
-var methodOverride = require('method-override');
-var session = require('express-session');
-var flash = require('express-flash');
-var bodyParser = require('body-parser');
-var expressValidator = require('express-validator');
-var dotenv = require('dotenv');
-var lusca = require('lusca');
-var nunjucks = require('nunjucks');
-var dateFilter = require('nunjucks-date-filter');
-var passport = require('passport');
-var colors = require('colors');
-var moment = require ('moment');
+let express = require('express');
+let path = require('path');
+let logger = require('morgan');
+let compression = require('compression');
+let methodOverride = require('method-override');
+let session = require('express-session');
+let flash = require('express-flash');
+let bodyParser = require('body-parser');
+let expressValidator = require('express-validator');
+let dotenv = require('dotenv');
+let lusca = require('lusca');
+let nunjucks = require('nunjucks');
+let dateFilter = require('nunjucks-date-filter');
+let passport = require('passport');
+let chalk = require('chalk');
+let moment = require ('moment');
 
-// Console Log Color Theme:
-colors.setTheme({
-    info: ['bgGreen', 'black'],
-    warn: ['bgYellow', 'black'],
-    error: ['bgRed', 'black'],
-    debug: ['bgBlue', 'white'],
-});
+// Console Log Color Themes:
+const clrInfo   = chalk.black.bgGreen;
+const clrWarn   = chalk.black.bgYellow;
+const clrError  = chalk.black.bgRed;
+const clrDebug  = chalk.white.bgBlue;
+const clrBold   = chalk.bold;
+const clrItalic = chalk.italic;
 
 // Load environment variables from .env file
 dotenv.load();
@@ -47,7 +47,7 @@ var env = nunjucks.configure(app.get('views'), {
 });
 
 // Add filter(s):
-var dateFilter = require('nunjucks-date-filter');
+//var dateFilter = require('nunjucks-date-filter');
     dateFilter.setDefaultFormat('MMM Do YYYY');
 env.addFilter('date', dateFilter);
 
@@ -134,18 +134,18 @@ if (app.get('env') === 'production') {
 }
 
 app.listen(app.get('port'), function() {
-  var currentpath = process.cwd();
+  let currentpath = process.cwd();
+  let date = new Date();
+  let datestring = date.toDateString();
+  let timestring = date.toLocaleTimeString();
 
-  var date = new Date();
-  var datestring = date.toDateString();
-  var timestring = date.toLocaleTimeString();
-
-  console.log('\n───────────────────────────────────────────────────────');
-  console.log('Express Server started at: ' + datestring + ', ' + timestring);
-  console.log('→ Port: ' + app.get('port'));
-  console.log('→ CWD:  ' + currentpath);
-  console.log('→ Mode: %s',app.get('env'));
-  console.log('───────────────────────────────────────────────────────\n');
+  console.log(clrBold('\n───────────────────────────────────────────────────────'));
+  console.log(clrBold(process.env.APP_NAME) + clrItalic(' started at: ') + clrBold(datestring) + ', ' + clrBold(timestring));
+  console.log(clrBold('───────────────────────────────────────────────────────'));
+  console.log(clrItalic('→ Port: ') + clrBold(app.get('port')));
+  console.log(clrItalic('→ CWD:  ') + clrBold(currentpath));
+  console.log(clrItalic('→ Mode: ') + clrBold(app.get('env')));
+  console.log(clrBold('───────────────────────────────────────────────────────\n'));
 });
 
 module.exports = app;
