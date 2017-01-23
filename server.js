@@ -47,8 +47,7 @@ var env = nunjucks.configure(app.get('views'), {
 });
 
 // Add filter(s):
-//var dateFilter = require('nunjucks-date-filter');
-    dateFilter.setDefaultFormat('MMM Do YYYY');
+dateFilter.setDefaultFormat('MMM Do YYYY');
 env.addFilter('date', dateFilter);
 
 app.set('view engine', 'njk');
