@@ -102,7 +102,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 /**
  * Routes.
  */
-require(path.join(__dirname,  './config/routes'))(app, passport);
+require(path.join(__dirname, './config/routes'))(app, passport);
 
 // Error Pages:
 // 404's
