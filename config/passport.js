@@ -1,3 +1,4 @@
+var path = require('path');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
@@ -5,7 +6,7 @@ var TwitterStrategy = require('passport-twitter').Strategy;
 var GithubStrategy = require('passport-github').Strategy;
 
 
-var User = require('../models/User');
+var User = require(path.join(__dirname, '../models/User'));
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);

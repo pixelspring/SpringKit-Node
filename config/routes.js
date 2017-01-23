@@ -1,11 +1,12 @@
+var path = require('path');
 
 module.exports = function (app, passport) {
 
     // Controllers
-    var HomeController = require('../controllers/home');
-    var userController = require('../controllers/user');
-    var contactController = require('../controllers/contact');
-    var apiController = require('../controllers/api');
+    var HomeController = require(path.join(__dirname, '../controllers/home'));
+    var userController = require(path.join(__dirname, '../controllers/user'));
+    var contactController = require(path.join(__dirname, '../controllers/contact'));
+    var apiController = require(path.join(__dirname, '../controllers/api'));
 
     app.get('/', HomeController.index);
     app.get('/contact', contactController.contactGet);

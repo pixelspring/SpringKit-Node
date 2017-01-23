@@ -29,7 +29,7 @@ dotenv.load();
 
 
 // Passport OAuth strategies
-require('./config/passport');
+require(path.join(__dirname, './config/passport'));
 
 var app = express();
 
@@ -103,7 +103,7 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 /**
  * Routes.
  */
-require('./config/routes')(app, passport);
+require(path.join(__dirname,  './config/routes'))(app, passport);
 
 // Error Pages:
 // 404's

@@ -1,4 +1,5 @@
-var config = require('../knexfile');
+var path = require('path');
+var config = require(path.join(__dirname, '../knexfile'));
 var knex = require('knex')(config);
 var bookshelf = require('bookshelf')(knex);
 
