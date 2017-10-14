@@ -232,3 +232,11 @@ textarea {
   display: block;
   margin: 0 0 1rem;
 }
+
+pre.error-stack {
+  font-size: 13px;
+  margin-bottom: 2rem;
+  background: black;
+  color: #03ff03;
+  padding: 1rem;
+}
