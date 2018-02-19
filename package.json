@@ -29,7 +29,7 @@
     "express-flash": "0.0.2",
     "express-session": "^1.15.6",
     "express-status-monitor": "^1.0.1",
-    "express-validator": "^4.3.0",
+    "express-validator": "^5.0.0",
     "knex": "^0.14.0",
     "lusca": "^1.5.2",
     "method-override": "^2.3.10",
