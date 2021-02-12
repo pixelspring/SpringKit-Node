@@ -15,7 +15,8 @@
     "watch": "npm-run-all --parallel watch:*",
     "watch:css": "nodemon -e scss -w public/css -x npm run build:css",
     "snyk-protect": "snyk protect",
-    "prepublish": "npm run snyk-protect"
+    "prepublish": "npm run snyk-protect",
+    "prepare": "npm run snyk-protect"
   },
   "dependencies": {
     "async": "^2.6.0",
@@ -47,7 +48,7 @@
     "passport-github": "^1.1.0",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
-    "snyk": "^1.49.1"
+    "snyk": "^1.85.0"
   },
   "devDependencies": {},
   "engines": {
